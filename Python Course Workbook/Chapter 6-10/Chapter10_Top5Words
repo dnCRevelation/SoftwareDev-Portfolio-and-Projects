@@ -1,0 +1,26 @@
+filename = input('Enter filename: ')
+
+if len(filename) < 3:
+    filename = 'mbox-short.txt'
+
+fhandle = open(filename)
+
+dict = {}
+list = []
+
+for line in fhandle:
+    line = line.split()
+    for word in line:
+        dict[word] = dict.get(word, 0) + 1
+        if word.startswith('http'):
+            list.append(word)
+            continue
+
+list1 = sorted([(value, key) for key, value in dict.items()], reverse=True)
+
+for key, val in list1[:5]:
+    print(key, val)
+   
+print('\n', '\n', list)
+
+

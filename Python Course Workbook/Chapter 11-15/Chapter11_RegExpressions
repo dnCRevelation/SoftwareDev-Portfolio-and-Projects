@@ -1,0 +1,15 @@
+import re
+
+hand = open('regex_sum.txt')
+numlist = []
+dict = {}
+for line in hand:
+    line = line.rstrip()
+    regex = re.findall('([0-9]+)' , line)
+    if len(regex) < 1 : continue
+    for num in regex:
+        num = int(num)
+        numlist.append(num)
+        
+print(numlist) 
+print(sum(numlist))

@@ -1,0 +1,11 @@
+fname = input("Enter file name: ")
+try:
+    handle = open(fname)
+except:
+    print('File cannot be opened, please try again')
+
+for line in handle:
+    line = line.rstrip()
+    line = line.upper()
+    print(line)
+

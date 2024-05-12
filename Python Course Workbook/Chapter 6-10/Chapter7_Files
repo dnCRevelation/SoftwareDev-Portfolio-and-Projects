@@ -1,0 +1,22 @@
+fname = input("Enter file name: ")
+
+try:
+    handle = open(fname)
+except:
+    print('File cannot be opened, please try again')
+    quit()
+
+lines = 0
+words = 0
+letter = 0
+
+for line in handle:
+    line = line.rstrip()
+    line = line.split()
+    lines = lines + 1
+    for word in line:
+        words = words + 1
+        for letters in word:
+            letter = letter + 1
+
+print('There were', lines, 'lines,', words, 'words, and', letter, 'letters in', fname)

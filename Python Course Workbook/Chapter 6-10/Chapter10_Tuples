@@ -1,0 +1,15 @@
+filename = input('Enter Filename: ')
+if len(filename) < 1:
+    filename = 'mbox-short.txt'
+fhandle = open(filename)
+dict = {}
+for line in fhandle:
+    line = line.rstrip()
+    if line.startswith('From '):
+        words = line.split()
+        time = words[5]
+        time = time.split(':')
+        dict[time[0]] = dict.get(time[0], 0) + 1
+lst = sorted([(key, val) for key, val in dict.items()])
+for key, val in lst:
+    print(key,val)

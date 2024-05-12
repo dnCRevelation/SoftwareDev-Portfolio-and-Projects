@@ -1,0 +1,46 @@
+import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
+import urllib.request, urllib.parse, urllib.error
+import ssl
+
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+fhand = input('Enter- ') 
+if len(fhand) < 1:
+    fhand = 'https://py4e-data.dr-chuck.net/comments_2009277.xml'
+
+print('Retrieving', fhand)
+
+url = urllib.request.urlopen(fhand).read()
+soup = BeautifulSoup(url, features="xml")
+
+tags = soup('comment') 
+tree = ET.fromstring(url)
+
+lst = tree.findall('.//comment')
+
+
+numlist = []
+sumlist = []
+for item in lst:
+    sumlist.append(int(item.find('count').text))
+    
+    
+print('Retrieving....')
+print('Retrieving....')
+print('Retrieving....')
+print('Retrieving....')
+print('Retrieving....')
+print('Retrieving....')
+print('Retrieving....')
+        
+print('Retrieved....', sum(sumlist * 2), 'Characters From', fhand)
+        
+print('Count:', len(lst))
+print('Sum:', sum(sumlist))
+    
+
+
+    
