@@ -14,4 +14,4 @@ for i in range(N):
     elif command[0] == 'difference_update':
         A.difference_update(s2)
 
-print(sum(A))
+print(sum(A)) 

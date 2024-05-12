@@ -1,0 +1,83 @@
+
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+from Crypto.Random import get_random_bytes
+import tkinter as tk
+from tkinter import ttk
+
+# Encryption function
+def encrypt():
+    # Generate a unique encryption key for this message
+    key = get_random_bytes(16)
+
+    # Get the message to encrypt from the input box
+    message = input_text.get('1.0', 'end-1c').encode()
+
+    # Pad the message to a multiple of 16 bytes
+    padded_message = pad(message, AES.block_size)
+
+    # Create an AES cipher object with the generated key
+    cipher = AES.new(key, AES.MODE_CBC)
+
+    # Encrypt the padded message
+    ciphertext = cipher.encrypt(padded_message)
+
+    # Encode the encrypted message and key as base64 strings
+    encrypted_message = ciphertext.hex()
+    encrypted_key = key.hex()
+
+    # Display the encrypted message and key in the output boxes
+    output_text.delete('1.0', 'end')
+    output_text.insert('1.0', encrypted_message)
+    key_text.delete('1.0', 'end')
+    key_text.insert('1.0', encrypted_key)
+
+# Decryption function
+def decrypt():
+    # Get the encrypted message and key from the output boxes
+    encrypted_message = bytes.fromhex(output_text.get('1.0', 'end-1c'))
+    encrypted_key = bytes.fromhex(key_text.get('1.0', 'end-1c'))
+
+    # Create an AES cipher object with the decrypted key
+    key = AES.new(encrypted_key, AES.MODE_CBC)
+
+    # Decrypt the encrypted message
+    padded_message = key.decrypt(encrypted_message)
+
+    # Unpad the decrypted message
+    message = unpad(padded_message, AES.block_size)
+
+    # Display the decrypted message in the input box
+    input_text.delete('1.0', 'end')
+    input_text.insert('1.0', message.decode())
+
+# Create a Tkinter window
+root = tk.Tk()
+root.title("AES Encryption")
+
+# Create a label and input box for entering the message
+input_label = ttk.Label(root, text="Enter message to encrypt:")
+input_label.pack()
+input_text = tk.Text(root, height=5, width=50)
+input_text.pack()
+
+# Create buttons for encrypting and decrypting
+encrypt_button = ttk.Button(root, text="Encrypt", command=encrypt)
+encrypt_button.pack()
+decrypt_button = ttk.Button(root, text="Decrypt", command=decrypt)
+decrypt_button.pack()
+
+# Create a label and output box for displaying the encrypted message
+output_label = ttk.Label(root, text="Encrypted message:")
+output_label.pack()
+output_text = tk.Text(root, height=5, width=50)
+output_text.pack()
+
+# Create a label and output box for displaying the encryption key
+key_label = ttk.Label(root, text="Encryption key:")
+key_label.pack()
+key_text = tk.Text(root, height=2, width=50)
+key_text.pack()
+
+# Start the main event loop
+root.mainloop()
