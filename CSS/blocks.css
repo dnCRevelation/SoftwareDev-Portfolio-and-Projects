@@ -1,0 +1,45 @@
+/* This is a partial blocks.css, you need to add more rules
+   to this file to complete the assignment.  Do not add any CSS
+   styling to the original index.htm / start.htm */
+
+   body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    float: center;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: white;
+}
+
+
+/* Here is one of many  CSS rules you will need... */
+
+
+
+.dj4eheader {
+    color: #FFFFFF;
+    background-color: #0a4b33;
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    font-size: 16.8px;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 10px;
+    line-height: 25px;
+    border-color: #0a4b33;
+    padding: none;
+    margin: 100px;
+}
