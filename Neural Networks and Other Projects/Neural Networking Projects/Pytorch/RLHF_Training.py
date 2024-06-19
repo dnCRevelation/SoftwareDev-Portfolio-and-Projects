@@ -44,6 +44,7 @@ pandas_format['text_length'] = pandas_format['text'].apply(len)
 
 plt.figure(figsize=(10,6))
 plt.hist(pandas_format['text_length'], bins=50, alpha=0.5, color='g')
+plt.annotate('Max Length: {}', xy=(pandas_format['text_length'].max(), 1000), xytext=(pandas_format['text_length'].max() + 100, 1000))
 plt.title('Distribution of Text Length')
 plt.xlabel('Length of Text')
 plt.ylabel('Frequency')
